@@ -7,7 +7,7 @@ public class Laser : MonoBehaviour {
 
     public oponents op;
     public GameObject player;
-    public GameObject target;
+    public GameObject target, enemy;
     public float speed;
     public float lifetime = 2;
 
@@ -27,7 +27,7 @@ public class Laser : MonoBehaviour {
 
         }
         else {
-            gameObject.GetComponent<Rigidbody> ().AddForce (-transform.forward * speed * Time.deltaTime, ForceMode.Impulse);
+            gameObject.GetComponent<Rigidbody> ().AddForce (Vector3.back * speed * Time.deltaTime, ForceMode.Impulse);
 
         }
 
