@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityStandardAssets.CrossPlatformInput;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class PlayerManager : MonoBehaviour {
 
+    public PlayerManager instance = null;
     public float rotationSpeed;
     RaycastHit ray;
     public GameObject target, shot, leftBeam, rightBeam;
@@ -13,13 +13,18 @@ public class PlayerManager : MonoBehaviour {
     public Text healthT;
     Animator anim;
     bool clicked = false;
-    public float health;
+    public float health, hor, vert;
+
+    void Awake () {
+        if (instance == null) {
+            instance = this;
+        }
+    }
 
     void FixedUpdate () {
         anim = gameObject.GetComponent<Animator> ();
         Raycast ();
-        transform.Rotate (Vector3.up, CrossPlatformInputManager.GetAxis("Horizontal") * rotationSpeed * Time.deltaTime);
-        transform.Rotate (Vector3.left, CrossPlatformInputManager.GetAxis ("Vertical") * rotationSpeed * Time.deltaTime);
+ 
         if (clicked) {
             Shooting ();
         }

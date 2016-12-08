@@ -6,7 +6,7 @@ public class EnemyManager : MonoBehaviour {
 
     public float health, maxhealth;
     public Image healthBar;
-    public GameObject shot, exitPoint;
+    public GameObject shot, exitPoint, player;
 
 	// Use this for initialization
 	void Start () {
@@ -18,7 +18,10 @@ public class EnemyManager : MonoBehaviour {
         if (health <= 0) {
             Destroy (gameObject);
         }
-
+        transform.LookAt (player.transform);
+        if (this.transform.rotation.y != 0) {
+            transform.rotation = Quaternion.Euler(transform.rotation.x, 0, transform.rotation.z);
+        }
         StartCoroutine (DelayInstantiation ());
 	}
 

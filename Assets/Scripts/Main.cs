@@ -21,7 +21,7 @@ public class Main : MonoBehaviour {
         timerT.text = timer.ToString ();
         timer -= Time.deltaTime;
         if (timer <= 0) {
-            print ("GAme OVer");
+            print ("Game OVer");
         }
 
         if (counter < 10) {
