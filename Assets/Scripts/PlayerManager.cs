@@ -28,8 +28,27 @@ public class PlayerManager : MonoBehaviour {
         if (clicked) {
             Shooting ();
         }
-
+        keyBoardShooting ();
+        keyboardMoving ();
         healthT.text = health.ToString ();
+    }
+
+    public void keyboardMoving () {
+        float h = Input.GetAxis ("Horizontal");
+        float v = Input.GetAxis ("Vertical");
+        h = h * Time.deltaTime * rotationSpeed;
+        v = v * Time.deltaTime * rotationSpeed;
+        transform.Rotate (-v, h, 0);
+
+    }
+
+    public void keyBoardShooting () {
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            Shooting ();
+        }
+        else if (Input.GetKeyUp(KeyCode.Space)) {
+            ClickedOff ();
+        }
     }
 
     public void ClickedOff () {

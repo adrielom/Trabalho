@@ -18,9 +18,10 @@ public class EnemyManager : MonoBehaviour {
         if (health <= 0) {
             Destroy (gameObject);
         }
-        transform.LookAt (player.transform);
-        if (this.transform.rotation.y != 0) {
-            transform.rotation = Quaternion.Euler(transform.rotation.x, 0, transform.rotation.z);
+        transform.LookAt (2 * transform.position - player.transform.position);
+
+        if (this.transform.rotation.y > 80) {
+            transform.rotation = Quaternion.Euler (transform.rotation.x, Random.Range(5, 30), transform.rotation.z);
         }
         StartCoroutine (DelayInstantiation ());
 	}
@@ -39,6 +40,9 @@ public class EnemyManager : MonoBehaviour {
     void OnCollisionEnter (Collision other) {
         if (other.gameObject.tag == "Bullet") {
             Damage ();
+        }
+        if (other.gameObject.tag == "Enemy") {
+            Destroy (this.gameObject);
         }
     }
 }

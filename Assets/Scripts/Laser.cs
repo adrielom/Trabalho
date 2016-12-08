@@ -9,6 +9,7 @@ public class Laser : MonoBehaviour {
     public GameObject player;
     public GameObject target;
     public float speed;
+    public float lifetime = 2;
 
 	// Use this for initialization
 	void Start () {
@@ -17,6 +18,10 @@ public class Laser : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        lifetime -= Time.deltaTime;
+        if (lifetime < 0) {
+            Destroy (this.gameObject);
+        }
         if (gameObject.tag == "Bullet") {
             gameObject.GetComponent<Rigidbody> ().AddForce (transform.forward * speed * Time.deltaTime, ForceMode.Impulse);
 

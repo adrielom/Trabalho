@@ -7,12 +7,12 @@ public class Main : MonoBehaviour {
     Vector3 startPos;
     public GameObject enemy, player;
     int counter = 0;
-    public float timer;
+    public float timer, timerInstantiation; 
     public Text timerT;
 
 	// Use this for initialization
 	void Start () {
-        startPos = new Vector3 (Random.Range (50, 1000), Random.Range (50, 1000), Random.Range (50, 1000));
+        timerInstantiation = 5;
 	}
 	
 	// Update is called once per frame
@@ -20,26 +20,21 @@ public class Main : MonoBehaviour {
 
         timerT.text = timer.ToString ();
         timer -= Time.deltaTime;
+        timerInstantiation -= Time.deltaTime;
+
         if (timer <= 0) {
             print ("Game OVer");
         }
+        if (timerInstantiation <= 0) {
+            DelayInstantiation ();
 
-        if (counter < 10) {
-            StartCoroutine (DelayInstantiation ());
-        }
-        else {
-            StartCoroutine (DelayCounter ());
         }
     }
 
-    IEnumerator DelayInstantiation () {
-        yield return new WaitForSeconds (Random.Range (0, 120));
+    void DelayInstantiation () {
+        startPos = new Vector3 (Random.Range (50, 500), Random.Range (50, 500), Random.Range (50, 500));
         Instantiate (enemy, startPos, Quaternion.LookRotation (player.transform.forward));
-        counter++;
+        timerInstantiation = 5f;
     }
 
-    IEnumerator DelayCounter () {
-        yield return new WaitForSeconds (Random.Range (20, 60));
-        counter = 0;
-    }
 }
