@@ -27,7 +27,7 @@ public class Laser : MonoBehaviour {
 
         }
         else {
-            gameObject.GetComponent<Rigidbody> ().AddForce (Vector3.back * speed * Time.deltaTime, ForceMode.Impulse);
+            gameObject.GetComponent<Rigidbody> ().AddForce ((player.transform.position-transform.position) * speed * Time.deltaTime, ForceMode.Impulse);
 
         }
 

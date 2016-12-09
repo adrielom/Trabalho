@@ -31,6 +31,9 @@ public class PlayerManager : MonoBehaviour {
         keyBoardShooting ();
         keyboardMoving ();
         healthT.text = health.ToString ();
+        if (health < 20) {
+            hud.color = Color.red;
+        }
     }
 
     public void keyboardMoving () {
@@ -86,7 +89,7 @@ public class PlayerManager : MonoBehaviour {
 
     void OnCollisionEnter (Collision other) {
         if (other.gameObject.tag == "EnemyBullet") {
-            health -= Random.Range (0, 2);
+            health -= Random.Range (5, 15);
             StartCoroutine (DelayChangeColour ());
         }
     }

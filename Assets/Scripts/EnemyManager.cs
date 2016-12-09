@@ -38,7 +38,7 @@ public class EnemyManager : MonoBehaviour {
     }
 
     public void Damage () {
-        health -= Random.Range (1, 3);
+        health -= Random.Range (1, 10);
         healthBar.fillAmount = health / maxhealth;
     }
 

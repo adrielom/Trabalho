@@ -18,7 +18,7 @@ public class Main : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        timerT.text = timer.ToString ();
+        timerT.text = timer.ToString ("F1");
         timer -= Time.deltaTime;
         timerInstantiation -= Time.deltaTime;
 
